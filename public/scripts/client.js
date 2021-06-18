@@ -31,38 +31,51 @@ $(document).ready(function() {
     }
   ]
 
+  const renderTweets = function(tweets) {
 
-  const tweetContainer = (tweetObj) => {
-    console.log(tweetObj.user.avatars);
-    $tweet = (`
+    $.each(tweets, (key) => {
+      let tweet = createTweetElement(tweets[key]);
+      $(".tweet-section").append(tweet);
+    });
+
+  }
+
+  const createTweetElement = (tweetObj) => {
+    console.log("tweetobj:", tweetObj);
+    const $tweet = `
       <article class="the-tweets">
         <header>
-          <div class="identity> 
+
+          <div class="identity"> 
             <img src="${tweetObj.user.avatars}">
             <h3>${tweetObj.user.name}</h3>
           </div>
+
           <div>${tweetObj.user.handle}</div>
+
         </header>
     
         <div class="body">${tweetObj.content.text}</div>
-        <footer class="tweets-footer">
+
+        <footer>
+
           <h3 class="daysAgo">${timeago.format(tweetObj.created_at)}</h3>
+
           <div class="options">
             <i class="fa fa-flag"></i>
             <i class="fa fa-retweet"></i>
             <i class="fa fa-heart"></i>
           </div>
+
         </footer>
     
-      </article>`
-    );
+      </article>`;
+    
     return $tweet
       
   }
 
-  $(".tweet-section").append(tweetContainer(tweetData[0]));
-  $(".tweet-section").append(tweetContainer(tweetData[1]));
-  // console.log(tweetContainer(tweetData));
-
+  // $(".tweet-section").append(createTweetElement(tweetData[0]));
+  // $(".tweet-section").append(createTweetElement(tweetData[1]));
+  renderTweets(tweetData)
 });
-//
