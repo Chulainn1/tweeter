@@ -6,31 +6,6 @@
 
 $(document).ready(function() {
 
-  // const tweetData = [
-  //   {
-  //     "user": {
-  //       "name": "Newton",
-  //       "avatars": "https://i.imgur.com/73hZDYK.png",
-  //       "handle": "@SirIsaac"
-  //     },
-  //     "content": {
-  //       "text": "If I have seen further it is by standing on the shoulders of giants"
-  //     },
-  //     "created_at": 1623530565747
-  //   },
-  //   {
-  //     "user": {
-  //       "name": "Descartes",
-  //       "avatars": "https://i.imgur.com/nlhLi3I.png",
-  //       "handle": "@rd"
-  //     },
-  //     "content": {
-  //       "text": "Je pense , donc je suis"
-  //     },
-  //     "created_at": 1623616965747
-  //   }
-  // ]
-
   const renderTweets = function(tweets) {
 
     $.each(tweets, (key) => {
@@ -77,29 +52,33 @@ $(document).ready(function() {
       
   }
 
-  // $(".tweet-section").append(createTweetElement(tweetData[0]));
-  // $(".tweet-section").append(createTweetElement(tweetData[1]));
-  // renderTweets();
-
   $("#target").on("submit", function(event) {
-    // console.log('called');
     event.preventDefault();
 
     //Step 1: grab text from textarea
-    const data = $('#tweet-text').serialize()
-    console.log("data:", data);
+    const data = $(this).serialize();
+    const value = $("#tweet-text").val();
+    console.log(value);
     //Step 2: error handling for text 
-    //Step 3: call back end with the text
+    if((value) === "" || (value) === null) {
+      return alert("your tweet is empty");
+    } else if (value.length > 140) {
+      return alert("your tweet is too long");
+    } else {
+      //Step 3: call back end with the text
 
-    $.ajax({ 
-      url: "/tweets/",
-      method: "POST",
-      data: data 
-    })
-    .then((result) => {
-      $("#tweet-section").empty();
-      loadTweets();
-    })
+      $.ajax({ 
+        url: "/tweets/",
+        method: "POST",
+        data: data 
+      })
+      .then((result) => {
+        $("#tweet-section").empty();
+        loadTweets();
+      })
+
+    }
+
 
   })
 
