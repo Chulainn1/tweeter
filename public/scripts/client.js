@@ -34,8 +34,10 @@ $(document).ready(function() {
   const renderTweets = function(tweets) {
 
     $.each(tweets, (key) => {
+      // console.log(tweets)
+      // console.log(key);
       let tweet = createTweetElement(tweets[key]);
-      $(".tweet-section").append(tweet);
+      $("#tweet-section").append(tweet);
     });
 
   }
@@ -77,5 +79,26 @@ $(document).ready(function() {
 
   // $(".tweet-section").append(createTweetElement(tweetData[0]));
   // $(".tweet-section").append(createTweetElement(tweetData[1]));
-  renderTweets(tweetData)
+  renderTweets(tweetData);
+
+  $("#target").on("submit", function(event) {
+    console.log('called');
+    event.preventDefault();
+
+    //Step 1: grab text from textarea
+    const data = $('#tweet-text').serialize()
+    console.log(data);
+    //Step 2: error handling for text 
+    //Step 3: call back end with the text
+
+    $.ajax({ 
+      url: "/tweets/",
+      method: "POST",
+      data: {text: data}
+    })
+    .then((result) => {
+      console.log("it worked");
+    })
+
+  })
 });
