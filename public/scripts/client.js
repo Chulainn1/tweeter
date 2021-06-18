@@ -16,9 +16,18 @@ $(document).ready(function() {
     });
 
   }
+  const escape = function (str) {
+    console.log("input:", str);
+    let div = document.createElement("div");
+    console.log("the div:", div);
+    div.appendChild(document.createTextNode(str));
+    console.log("output:", div.innerHTML);
+    return div.innerHTML;
+  };
 
   const createTweetElement = (tweetObj) => {
     // console.log("tweetobj:", tweetObj);
+
     const $tweet = `
       <article class="the-tweets">
         <header>
@@ -32,7 +41,7 @@ $(document).ready(function() {
 
         </header>
     
-        <div class="body">${tweetObj.content.text}</div>
+        <div class="body">${escape(tweetObj.content.text)}</div>
 
         <footer>
 
@@ -58,7 +67,7 @@ $(document).ready(function() {
     //Step 1: grab text from textarea
     const data = $(this).serialize();
     const value = $("#tweet-text").val();
-    console.log(value);
+    
     //Step 2: error handling for text 
     if((value) === "" || (value) === null) {
       return alert("your tweet is empty");
@@ -78,7 +87,6 @@ $(document).ready(function() {
       })
 
     }
-
 
   })
 
