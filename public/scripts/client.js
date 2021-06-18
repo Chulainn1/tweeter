@@ -6,30 +6,30 @@
 
 $(document).ready(function() {
 
-  const tweetData = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1623530565747
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1623616965747
-    }
-  ]
+  // const tweetData = [
+  //   {
+  //     "user": {
+  //       "name": "Newton",
+  //       "avatars": "https://i.imgur.com/73hZDYK.png",
+  //       "handle": "@SirIsaac"
+  //     },
+  //     "content": {
+  //       "text": "If I have seen further it is by standing on the shoulders of giants"
+  //     },
+  //     "created_at": 1623530565747
+  //   },
+  //   {
+  //     "user": {
+  //       "name": "Descartes",
+  //       "avatars": "https://i.imgur.com/nlhLi3I.png",
+  //       "handle": "@rd"
+  //     },
+  //     "content": {
+  //       "text": "Je pense , donc je suis"
+  //     },
+  //     "created_at": 1623616965747
+  //   }
+  // ]
 
   const renderTweets = function(tweets) {
 
@@ -37,13 +37,13 @@ $(document).ready(function() {
       // console.log(tweets)
       // console.log(key);
       let tweet = createTweetElement(tweets[key]);
-      $("#tweet-section").append(tweet);
+      $("#tweet-section").prepend(tweet);
     });
 
   }
 
   const createTweetElement = (tweetObj) => {
-    console.log("tweetobj:", tweetObj);
+    // console.log("tweetobj:", tweetObj);
     const $tweet = `
       <article class="the-tweets">
         <header>
@@ -79,26 +79,41 @@ $(document).ready(function() {
 
   // $(".tweet-section").append(createTweetElement(tweetData[0]));
   // $(".tweet-section").append(createTweetElement(tweetData[1]));
-  renderTweets(tweetData);
+  // renderTweets();
 
   $("#target").on("submit", function(event) {
-    console.log('called');
+    // console.log('called');
     event.preventDefault();
 
     //Step 1: grab text from textarea
     const data = $('#tweet-text').serialize()
-    console.log(data);
+    console.log("data:", data);
     //Step 2: error handling for text 
     //Step 3: call back end with the text
 
     $.ajax({ 
       url: "/tweets/",
       method: "POST",
-      data: {text: data}
+      data: data 
     })
     .then((result) => {
-      console.log("it worked");
+      $("#tweet-section").empty();
+      loadTweets();
     })
 
   })
+
+  const loadTweets = function() {
+    $.ajax({ 
+      url: "/tweets/",
+      method: "GET",
+      dataType: 'json'
+    })
+    .then((result) => {
+      renderTweets(result);
+    })
+  }
+
+  loadTweets();
+
 });
