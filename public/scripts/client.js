@@ -17,11 +17,11 @@ $(document).ready(function() {
 
   }
   const escape = function (str) {
-    console.log("input:", str);
+    // console.log("input:", str);
     let div = document.createElement("div");
-    console.log("the div:", div);
+    // console.log("the div:", div);
     div.appendChild(document.createTextNode(str));
-    console.log("output:", div.innerHTML);
+    // console.log("output:", div.innerHTML);
     return div.innerHTML;
   };
 
@@ -63,6 +63,8 @@ $(document).ready(function() {
 
   $("#target").on("submit", function(event) {
     event.preventDefault();
+   
+    $('#error-container, h1').slideUp("slow");
 
     //Step 1: grab text from textarea
     const data = $(this).serialize();
@@ -70,9 +72,15 @@ $(document).ready(function() {
     
     //Step 2: error handling for text 
     if((value) === "" || (value) === null) {
-      return alert("your tweet is empty");
+        
+      $('#error-container, h1').text("❌ pls write something for people to read ❌");
+      $( "#error-container, h1" ).slideDown( "slow" );
+
     } else if (value.length > 140) {
-      return alert("your tweet is too long");
+
+      $('#error-container, h1').text("❌ limit your words to a minimum of 140 characters ❌");
+      $( '#error-container, h1' ).slideDown( "slow" );
+
     } else {
       //Step 3: call back end with the text
 
