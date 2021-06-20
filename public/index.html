@@ -35,7 +35,8 @@
     <nav class="tweeter stack-top">
       <span class="title">tweeter</span>
         <div class="newTweet">
-          <span>Write a new tweet</span>
+          <!-- <span>Write a new tweet</span> -->
+          <a href="#container">Write a new tweet</a>
           <i class="fas fa-angle-double-down"></i>
         </div>
     </nav>
@@ -54,12 +55,12 @@
     
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
+    <main id="container">
       <section class="new-tweet">
         <div id="error-container">
           <h1></h1>
         </div>
-        <h2>Compose Tweet</h2>
+        <h2 id="compose">Compose Tweet</h2>
         <form id="target" method="POST" action="./tweets">
 
           <div class="prompt"> 
