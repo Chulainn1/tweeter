@@ -1,0 +1,43 @@
+/* Desktop styles */
+@media only screen and (min-width: 1024px) {
+  
+  .profile {
+    width: 33.3%;
+    float: left;
+    margin-top: 200px;
+    margin-left: 30px;
+    margin-right: 125px;
+  }
+
+
+  main {
+    width: 50%;
+    background-color: #f4f1ec;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .new-tweet { 
+    margin-top: 175px;
+  }
+
+}
+
+/* Tablet Styles */
+@media only screen and (max-width: 1023px) {
+  
+  .tweeter {
+    background-color: transparent;
+    
+  }
+
+  .profile {
+    margin-top: 0%;
+    
+  }
+
+}
