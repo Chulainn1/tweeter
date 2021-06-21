@@ -15,6 +15,7 @@
   padding: 20px;
   margin-bottom: 35px;
 
+
 }
 
 .the-tweets:hover {
@@ -78,5 +79,9 @@
 
   color: aqua;
 
+}
+
+.body {
+  word-wrap: break-word;
 }
 

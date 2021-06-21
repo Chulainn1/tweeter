@@ -6,27 +6,18 @@
 
 $(document).ready(function() {
 
-  const renderTweets = function(tweets) {
+  // The escape function stops XSS. It is used in createTweetElement on line 37
+  // which corresponds to the content typed by a user. 
 
-    $.each(tweets, (key) => {
-      // console.log(tweets)
-      // console.log(key);
-      let tweet = createTweetElement(tweets[key]);
-      $("#tweet-section").prepend(tweet);
-    });
-
-  }
   const escape = function (str) {
-    // console.log("input:", str);
     let div = document.createElement("div");
-    // console.log("the div:", div);
     div.appendChild(document.createTextNode(str));
-    // console.log("output:", div.innerHTML);
     return div.innerHTML;
   };
 
+  // A function that uses template literals to construct the tweets for viewing 
+  // pleasure
   const createTweetElement = (tweetObj) => {
-    // console.log("tweetobj:", tweetObj);
 
     const $tweet = `
       <article class="the-tweets">
@@ -40,8 +31,12 @@ $(document).ready(function() {
           <div>${tweetObj.user.handle}</div>
 
         </header>
-    
+
+        <body>
+
         <div class="body">${escape(tweetObj.content.text)}</div>
+
+        </body>
 
         <footer>
 
@@ -60,6 +55,11 @@ $(document).ready(function() {
     return $tweet
       
   }
+
+  // On the event that the user submits a new tweet, error handling occurs for zero
+  // and max characters input in the textarea. ajax POST request to backend is made with
+  // data. Empty the tweet-section with every successful submit and reset the textarea
+  // to be empty and the counter reset to 140. 
 
   $("#target").on("submit", function(event) {
     event.preventDefault();
@@ -82,7 +82,8 @@ $(document).ready(function() {
       $( '#error-container, h1' ).slideDown( "slow" );
 
     } else {
-      //Step 3: call back end with the text
+
+    //Step 3: call back end with the text
 
       $.ajax({ 
         url: "/tweets/",
@@ -93,11 +94,26 @@ $(document).ready(function() {
         $("#tweet-section").empty();
         loadTweets();
       })
-
+      // Ideally add a helper function within the char-counter file.
+      $("#tweet-text").val("");
+      $("#counter").val(140);
     }
 
   })
 
+  // A function that is passed an array of tweets. Tweets at each key is passed 
+  // to a function that creates the tweet and stored in a variable. It is then 
+  // rendered to the top of the tweet section. 
+  const renderTweets = function(tweets) {
+
+    $.each(tweets, (key) => {
+      let tweet = createTweetElement(tweets[key]);
+      $("#tweet-section").prepend(tweet);
+    });
+
+  }
+
+  // Function that GETs the tweets and passes them to the renderTweets function.
   const loadTweets = function() {
     $.ajax({ 
       url: "/tweets/",
