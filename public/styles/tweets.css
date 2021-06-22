@@ -11,7 +11,7 @@
 .the-tweets {
 
   width: 100%;
-  border: 3px solid black;
+  border: 3px solid #094074;
   padding: 20px;
   margin-bottom: 35px;
 
@@ -19,7 +19,7 @@
 }
 
 .the-tweets:hover {
-  box-shadow: 5px 10px black;
+  box-shadow: 5px 10px #3C6997;
 }
 
 /* The header contains the indentification info, */
@@ -62,7 +62,7 @@
   align-items: center;
 
   margin-top: 25px;
-  border-top: 5px solid black;
+  border-top: 5px solid grey;
 
 }
 
@@ -81,7 +81,7 @@
 
 .options i:hover {
 
-  color: maroon;
+  color: #A22C29;
 
 }
 

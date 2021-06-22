@@ -7,15 +7,15 @@
 $(document).ready(function() {
 
   // The escape function stops XSS. It is used in createTweetElement on line 37
-  // which corresponds to the content typed by a user. 
+  // which corresponds to the content typed by a user.
 
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-  // A function that uses template literals to construct the tweets for viewing 
+  // A function that uses template literals to construct the tweets for viewing
   // pleasure
   const createTweetElement = (tweetObj) => {
 
@@ -52,14 +52,14 @@ $(document).ready(function() {
     
       </article>`;
     
-    return $tweet
+    return $tweet;
       
-  }
+  };
 
   // On the event that the user submits a new tweet, error handling occurs for zero
   // and max characters input in the textarea. ajax POST request to backend is made with
   // data. Empty the tweet-section with every successful submit and reset the textarea
-  // to be empty and the counter reset to 140. 
+  // to be empty and the counter reset to 140.
 
   $("#target").on("submit", function(event) {
     event.preventDefault();
@@ -70,40 +70,40 @@ $(document).ready(function() {
     const data = $(this).serialize();
     const value = $("#tweet-text").val();
     
-    //Step 2: error handling for text 
-    if((value) === "" || (value) === null) {
+    //Step 2: error handling for text
+    if ((value) === "" || (value) === null) {
         
       $('#error-container, h1').text("❌ pls write something for people to read ❌");
-      $( "#error-container, h1" ).slideDown( "slow" );
+      $('#error-container, h1').slideDown("slow");
 
     } else if (value.length > 140) {
 
       $('#error-container, h1').text("❌ limit your words to a minimum of 140 characters ❌");
-      $( '#error-container, h1' ).slideDown( "slow" );
+      $('#error-container, h1').slideDown("slow");
 
     } else {
 
-    //Step 3: call back end with the text
+      //Step 3: call back end with the text
 
-      $.ajax({ 
+      $.ajax({
         url: "/tweets/",
         method: "POST",
-        data: data 
+        data: data
       })
-      .then((result) => {
-        $("#tweet-section").empty();
-        loadTweets();
-      })
+        .then((result) => {
+          $("#tweet-section").empty();
+          loadTweets();
+        });
       // Ideally add a helper function within the char-counter file.
       $("#tweet-text").val("");
       $("#counter").val(140);
     }
 
-  })
+  });
 
-  // A function that is passed an array of tweets. Tweets at each key is passed 
-  // to a function that creates the tweet and stored in a variable. It is then 
-  // rendered to the top of the tweet section. 
+  // A function that is passed an array of tweets. Tweets at each key is passed
+  // to a function that creates the tweet and stored in a variable. It is then
+  // rendered to the top of the tweet section.
   const renderTweets = function(tweets) {
 
     $.each(tweets, (key) => {
@@ -111,7 +111,7 @@ $(document).ready(function() {
       $("#tweet-section").prepend(tweet);
     });
 
-  }
+  };
 
   // Function that GETs the tweets and passes them to the renderTweets function.
   const loadTweets = function() {
@@ -120,10 +120,10 @@ $(document).ready(function() {
       method: "GET",
       dataType: 'json'
     })
-    .then((result) => {
-      renderTweets(result);
-    })
-  }
+      .then((result) => {
+        renderTweets(result);
+      });
+  };
 
   loadTweets();
 

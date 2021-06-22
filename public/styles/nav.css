@@ -27,7 +27,7 @@
   color: #FFFF;
   font-family: Bungee;
   padding: 1.5em;
-  font-size: large;
+  font-size: medium;
 
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
 
 /* DOUBLE ARROW DOWN ICON */
 .fas {
-  color: red;
+  color: #A22C29;
 }
 
 /* SCROLL TO #container WHEN CLICKED */

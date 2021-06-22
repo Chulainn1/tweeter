@@ -5,8 +5,8 @@
   text-align: center;
 
 
-  color: red;
-  border: 3px solid red;
+  color: #A22C29;
+  border: 3px solid #A22C29;
   border-radius: 5px;
   margin-top: 10px;
   padding: 10px;
@@ -44,11 +44,11 @@
 }
 
 .button {
-  background-color:  #4056a1;
+  background-color:  #3C6997;
   color:  #FFFF;
 }
 
 /* Class that is added when char-counter reaches negative */
 .red-counter {
-  color: red;
+  color: #A22C29;
 }
