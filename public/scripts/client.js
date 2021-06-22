@@ -16,7 +16,7 @@ $(document).ready(function() {
   };
 
   // A function that uses template literals to construct the tweets for viewing
-  // pleasure
+  // pleasure.
   const createTweetElement = (tweetObj) => {
 
     const $tweet = `
@@ -94,7 +94,7 @@ $(document).ready(function() {
           $("#tweet-section").empty();
           loadTweets();
         });
-      // Ideally add a helper function within the char-counter file.
+      // Ideally add a helper function used within the char-counter file.
       $("#tweet-text").val("");
       $("#counter").val(140);
     }
