@@ -1,31 +1,33 @@
+/* NAV CONTAINER */
 .tweeter {
   height: 120px;
   width: 100%;
   background-color: #4056a1;
   padding: 5px;
-  
-
-  display: flex;
-  justify-content: space-between;
-  
   position: fixed;
   top: 0;
   
+  display: flex;
+  justify-content: space-between;
+  
 }
 
+/* TWEETER */
 .title {
   color: #FFFF;
   font-family: Bungee;
+  font-size: larger;
   padding: 1.5em;
 
   display: flex;
 }
 
+/* WRITE A NEW TWEET */
 .newTweet {
   color: #FFFF;
   font-family: Bungee;
   padding: 1.5em;
-  font-size: small;
+  font-size: large;
 
   display: flex;
   flex-direction: column;
@@ -33,11 +35,12 @@
   justify-content: center;
 }
 
+/* DOUBLE ARROW DOWN ICON */
 .fas {
   color: red;
-  display: flex;
 }
 
+/* SCROLL TO #container WHEN CLICKED */
 html {
   scroll-behavior: smooth;
  }
