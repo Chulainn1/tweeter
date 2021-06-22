@@ -1,3 +1,22 @@
+#error-container {
+  display: none;
+  
+  font-weight: bold;
+  text-align: center;
+
+
+  color: red;
+  border: 3px solid red;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px;
+
+}
+
+.new-tweet {
+  width: 100%;
+}
+
 .tweet_count {
   display: flex;
   flex-direction: row;
@@ -14,11 +33,6 @@
   padding: 5px;
 }
 
-.button {
-  background-color:  #4056a1;
-  color:  #FFFF;
-}
-
 #tweet-text {
   background-color: transparent;
   border-top-style: hidden;
@@ -29,26 +43,12 @@
 
 }
 
-.new-tweet {
-  width: 100%;
+.button {
+  background-color:  #4056a1;
+  color:  #FFFF;
 }
 
-#error-container {
-  display: none;
-  
-  font-weight: bold;
-  text-align: center;
-
-
-  color: red;
-  border: 3px solid red;
-  border-radius: 5px;
-  margin-top: 10px;
-  padding: 10px;
-
-}
-
-
+/* Class that is added when char-counter reaches negative */
 .red-counter {
   color: red;
 }

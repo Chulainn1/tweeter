@@ -66,6 +66,10 @@
 
 }
 
+.body {
+  word-wrap: break-word;
+}
+
 .options {
 
   display: flex;
@@ -77,11 +81,8 @@
 
 .options i:hover {
 
-  color: aqua;
+  color: maroon;
 
 }
 
-.body {
-  word-wrap: break-word;
-}
 
